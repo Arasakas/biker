@@ -9,17 +9,12 @@ public class ControlerBiker : MonoBehaviour
 {
 
     [SerializeField]
-    private float RSpeed /*= 10.0f*/;
+    private float RSpeed = 10.0f;
     [SerializeField]
     private float deplaceSpeed;
     private float currentSpeed = 0;
    
- 
-    
- 
-
    
-    // Start is called before the first frame update
     void Start()
     {
 
@@ -28,14 +23,14 @@ public class ControlerBiker : MonoBehaviour
         transform.position = new Vector3(0, 0.1f, 0);
     }
 
-   // Update is called once per frame
+   
     void Update()
     {
 
         //// vas de droite à gauche pour le déplacement avec le clavier
         float horizontalMove = Input.GetAxis("Horizontal") * RSpeed * Time.deltaTime;
         transform.position += transform.right * horizontalMove;
-        Debug.Log(horizontalMove);
+        
 
         // Evite de traverser la map
         if (transform.position.y < 1)
@@ -99,28 +94,14 @@ public class ControlerBiker : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         
-
-        Debug.Log("Collision");
         if (ControlerGame.Direct.ChocVitesse > 0)
         {
             ControlerGame.Direct.ChocVitesse -= 10;
             if (ControlerGame.Direct.ChocVitesse <= 0)
             {
-                Debug.Log("Reprend ta course !!!");
+                
             }
         }
-
-        //private void OnTriggerEnter(Collider other)
-        //{
-        //    Debug.Log("Collision");
-        //    if(ControlerGame.Direct.ChocVitesse >0)
-        //    {
-        //        ControlerGame.Direct.ChocVitesse -= 10;
-        //        if (ControlerGame.Direct.ChocVitesse <= 0)
-        //        {
-        //            Debug.Log("Reprend ta course !!!");
-        //        }
-        //    }
 
     }
 

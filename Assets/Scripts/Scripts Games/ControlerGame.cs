@@ -5,18 +5,15 @@ using UnityEngine;
 
 public class ControlerGame : MonoBehaviour
 {
-
     public static ControlerGame Direct;
 
     [SerializeField]
     private GameObject[] SolPrefabs;
 
-    [SerializeField] // une fois fini le desactivé
     private GameObject[] SolGames;
 
     [SerializeField]
     public int ChocVitesse;
-
 
     private GameObject Biker;
 
@@ -34,7 +31,7 @@ public class ControlerGame : MonoBehaviour
         ChocVitesse = 100;
     }
 
-    // Start is called before the first frame update
+   
     void Start()
     {
         Biker = GameObject.Find("Biker");
@@ -49,7 +46,7 @@ public class ControlerGame : MonoBehaviour
         }
 
         //taille de la route
-        SolSize = SolGames[0].GetComponentInChildren<Transform>().Find("Terrain")./*transform.*/localScale.z;
+        SolSize = SolGames[0].GetComponentInChildren<Transform>().Find("Terrain").localScale.z;
 
         float pos = Biker.transform.position.z + SolSize / 2 - 1.5f;
         foreach (var sol in SolGames)
@@ -60,7 +57,7 @@ public class ControlerGame : MonoBehaviour
 
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         for (int i = SolGames.Length - 1; i >= 0; i--)
