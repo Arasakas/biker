@@ -8,16 +8,15 @@ using UnityEngine;
 public class ControlerBiker : MonoBehaviour
 {
 
-    [SerializeField]
-    private float RSpeed = 10.0f;
-    [SerializeField]
-    private float deplaceSpeed;
+    
+    public int RSpeed = 15;
+    private AudioSource Audio;
     private float currentSpeed = 0;
    
    
     void Start()
     {
-
+        Audio = GetComponent<AudioSource>();
         
         // se remet la position lorsque on le déplace sur le montage
         transform.position = new Vector3(0, 0.1f, 0);
@@ -30,7 +29,7 @@ public class ControlerBiker : MonoBehaviour
         //// vas de droite à gauche pour le déplacement avec le clavier
         float horizontalMove = Input.GetAxis("Horizontal") * RSpeed * Time.deltaTime;
         transform.position += transform.right * horizontalMove;
-        
+        Audio.pitch = Input.GetAxis("Horizontal") + 1.5f; //si je suis a 0 je n'aurai pas de son
 
         // Evite de traverser la map
         if (transform.position.y < 1)
@@ -54,9 +53,9 @@ public class ControlerBiker : MonoBehaviour
         if (Input.GetButton("Fire1"))
         {
             currentSpeed += 0.1f * Time.deltaTime;
-            if (currentSpeed > deplaceSpeed)
+            if (currentSpeed >RSpeed)
             {
-                currentSpeed = deplaceSpeed;
+                currentSpeed = RSpeed;
             }
                        
         }
@@ -77,9 +76,9 @@ public class ControlerBiker : MonoBehaviour
         if (Input.GetButton("Fire2"))
         {
             currentSpeed -= 0.1f * Time.deltaTime;
-            if (currentSpeed > deplaceSpeed)
+            if (currentSpeed > RSpeed)
             {
-                currentSpeed = deplaceSpeed;
+                currentSpeed = RSpeed;
             }
         }
 
