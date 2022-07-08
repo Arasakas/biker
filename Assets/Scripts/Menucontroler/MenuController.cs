@@ -9,7 +9,7 @@ public enum PanelType
     None,
     Main,
     Option,
-    Credits,
+   
 }
 public class MenuController : MonoBehaviour
 {
